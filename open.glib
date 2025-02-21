@@ -16,4 +16,4 @@ Program  OvalNoise                      \
 	uNoiseFreq <0. 1. 10.>
 
 
-Obj spaceship.obj 1.0 50 50
+Obj snakeH.obj 1.0 50 50
