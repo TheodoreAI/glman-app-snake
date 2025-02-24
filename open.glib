@@ -1,19 +1,22 @@
 ##OpenGL GLIB
-LookAt  0 0 3  0 0 0  0 1 0
 Perspective 70
+LookAt  0 0 3  0 0 0  0 1 0
 
 Vertex   snake.vert
 Fragment snake.frag
-Program  OvalNoise                      \
-        uKa <0.1 0.1 0.5>               \
-        uKd <0.1 0.6 1.>                \
-        uKs <0.1 0.3 1.>                \
-        uShininess <1. 10. 25.>         \
-        uAd <.01 .05 .5>		\
-	uBd <.01 .05 .5> 		\
-        uTol <0. 0. 1.>			\
-        uNoiseAmp <0. 0. 1.>		\
-	uNoiseFreq <0. 1. 10.>
+Program  SnakeH  				\
+			uUseST <true>		\
+			uS <0. .5 1.>		\
+			uDs <0. .2 1.>		\
+			uT <0. .5 1.>		\
+			uDt <0. .2 1.>		\
+			uX <-5. 0. 5.>		\
+			uDx <0. 3. 5.>		\
+			uY <-5. 0. 5.>		\
+			uDy <0. 3. 5.>		\
+			uZ <-5. 0. 5.>		\
+			uDz <0. 3. 5.>
 
+Color 1. 1. 1.
 
-Obj snakeH.obj 1.0 50 50
+Obj snakeH.obj 1.0 5 5

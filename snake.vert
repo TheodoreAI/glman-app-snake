@@ -1,26 +1,23 @@
 #version 330 compatibility
 
-// will be interpolated into the fragment shader:
-out  vec2  vST;                 // texture coords
-out  vec3  vN;                  // normal vector
-out  vec3  vL;                  // vector from point to light
-out  vec3  vE;                  // vector from point to eye
-out  vec3  vMC;			// model coordinates
+out vec4  vColor;
+out float vLightIntensity; 
+out vec2  vST;
+out vec3  vXYZ;
 
-// for Mac users:
-//	Leave out the #version line, or use 120
-//	Change the "out" to "varying"
-
-const vec3 LIGHTPOSITION = vec3( 5., 5., 0. );
-
-void
-main( )
+void main( )
 {
-	vST = gl_MultiTexCoord0.st;
-	vMC = gl_Vertex.xyz;
-	vec4 ECposition = gl_ModelViewMatrix * gl_Vertex; // eye coordinate position
-	vN = normalize( gl_NormalMatrix * gl_Normal ); // normal vector
-	vL = LIGHTPOSITION - ECposition.xyz; // vector from the point to the light position
-	vE = vec3( 0., 0., 0. ) - ECposition.xyz; // vector from the point to the eye position
+	vST  = gl_MultiTexCoord0.st;
+	vXYZ = gl_Vertex.xyz;
+
+    vec3 tnorm = normalize( gl_NormalMatrix * gl_Normal );
+	vec3 LightPos = vec3( 5., 10., 10. );
+	vec3 ECposition = vec3( gl_ModelViewMatrix * gl_Vertex );
+    	vLightIntensity  = abs( dot( normalize(LightPos - ECposition), tnorm ) );
+	if( vLightIntensity < 0.2 ) vLightIntensity = 0.2;
+		
+	vColor = gl_Color;
+	if( gl_ProjectionMatrix[2][3] == 0. )
+		vColor = vec4( 1., .5, 0., 1. );
 	gl_Position = gl_ModelViewProjectionMatrix * gl_Vertex;
 }
