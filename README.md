@@ -12,7 +12,7 @@ The following is a glman program to run Shaders (vertex, fragment, geometry, tes
 
 - I will make a small animation of the snake,
   - Use the Timer variable in glman to run it
-  - The snake can move around
+  - The snake color can change
   - if it runs past something in its path, it changes color, for example, if it "eats" a green sphere, it turns green.
 
 - I will make the snake a realistic color
