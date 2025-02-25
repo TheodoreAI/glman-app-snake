@@ -1,6 +1,5 @@
 #version 330 compatibility
 
-out vec4  vColor;
 out float vLightIntensity; 
 out vec2  vST;
 out vec3  vXYZ;
@@ -16,8 +15,6 @@ void main( ){
     vLightIntensity  = abs( dot( normalize(LightPos - ECposition), tnorm ) );
 	if( vLightIntensity < 0.2 ) vLightIntensity = 0.2;
 		
-	vColor = gl_Color;
-	if( gl_ProjectionMatrix[2][3] == 0. )
-		vColor = vec4( 1., .5, 0., 1. );
+
 	gl_Position = gl_ModelViewProjectionMatrix * gl_Vertex;
 }

@@ -1,17 +1,14 @@
 #version 330 compatibility
 
-in vec4  vColor;
 in float vLightIntensity;
+in vec2 vST;
 
+uniform sampler2D uColorUnit;
 
 void main( )
 {
-	vec3 newColor = vColor.rgb;
+    vec3 texColor = texture(uColorUnit, vST).rgb;
 
-    // Grass color
-    vec3 greenGrass = vec3(0.1, 0.8, 0.1);
-
-    newColor = greenGrass;
-	newColor *= vLightIntensity;
-	gl_FragColor = vec4( newColor, 1. );
+	texColor *= vLightIntensity;
+	gl_FragColor = vec4( texColor, 1. );
 }
