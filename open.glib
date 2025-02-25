@@ -6,14 +6,15 @@ Vertex   snake.vert
 Fragment snake.frag
 Program  SnakeH  			\
 		uUseST <true>		\
-		uX <-5. 0. 5.>		\
-		uDx <0. 3. 5.>		\
-		uY <-5. 0. 5.>		\
-		uDy <0. 3. 5.>		\
-		uZ <-5. 0. 5.>		\
-		uDz <0. 3. 5.>      \
+		uIsSnake <true>     \
 		amplitude <0. .5 5.>\
 
 Color 1. 1. 1.
-
 Obj snakeH.obj 1.0 1 1
+
+// I am going to split the grass and snake shaders
+Vertex grass.vert
+Fragment grass.frag
+Program Grass
+
+QuadXZ   -0.1 100.0 128 128
