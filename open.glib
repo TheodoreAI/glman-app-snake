@@ -1,28 +1,23 @@
 ##OpenGL GLIB
 Perspective 70
-LookAt  0 0 12 0 0 0  0 1 0
+LookAt  0 0 12  0 0 0  0 1 0
 
-
-
+Texture2D 8 snake.bmp
 Vertex   snake.vert
 Fragment snake.frag
-Program  SnakeH  			\
-		amplitude <0. .5 20.>\
-		scaleFactor <0., .2, 100.0> \
-		Timer <0. 0. 10.>   \
-		speed <0., .0, 20.>\
-		radius <0., .0, 10.>\
-		
+Program  SnakeH                       \
+    uColorUnit 8                      \
+    speed <0.0 0.0 20.0>              \
+    opacity <0.0 1.0 1.0>             \
+    amplitude <0.0 0.0 20.0>
 
-Color 1. 1. 1.
+Color 1.0 1.0 1.0
 Obj snakeH.obj 1.0 1 1
 
 // I am going to split the grass and snake shaders
 Texture2D 6 grass.bmp
-
 Vertex grass.vert
 Fragment grass.frag
-Program Grass
-		uColorUnit 6  \
+Program Grass uColorUnit 6
 
-QuadXZ   -0.1 100.0 128 128
+QuadXZ -0.1 100.0 128 128

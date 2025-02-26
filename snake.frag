@@ -1,7 +1,7 @@
 #version 330 compatibility
 
-uniform float scaleFactor;
-uniform float radius;
+uniform float opacity;
+uniform sampler2D uColorUnit;
 
 in vec2  vST;
 in float vLightIntensity;
@@ -9,29 +9,22 @@ in float vLightIntensity;
 // const vec3 WHITE = vec3( 1., 1., 1. );
 // const vec3 BLACK = vec3(0., 0., 0.);
 
-vec3 scaleColor = vec3(0.07, 0.01, 0.0);
-vec3 baseColor = vec3(0.8, 0.7, 0.5);
-vec3 defaultColor = vec3(0.92, 0.89, 0.06);
+// vec3 scaleColor = vec3(0.07, 0.01, 0.0);
+// vec3 baseColor = vec3(0.8, 0.7, 0.5);
+vec3 defaultColor = vec3(0.92, 0.06, 0.06);
 void main( )
 {
 
-	//* create a repeating pattern by multiplying the scaleFactor*/
-	vec2 scaledST = fract(vST * scaleFactor);
+	
 
-	// center the coordinates
-	vec2 centered = scaledST - 0.5;
+	vec4 texColor = texture(uColorUnit, vST);
 
-	float dist = length(centered);
+	texColor.a = opacity; // alpha value multiplied by opacity
+	texColor.rgb*vLightIntensity;
+	gl_FragColor = texColor;
 
-	//* picking colors */
-	if(vST.s < 0.5){
-		if(dist < radius){
-			gl_FragColor = vec4(scaleColor*vLightIntensity, 1.0);
-		}else{
-			gl_FragColor = vec4(baseColor*vLightIntensity, 1.0);
-		}
-	}else{
-		gl_FragColor = vec4(defaultColor*vLightIntensity, 1.0);
+	if(vST.s > 0.5 && vST.t > 0.5){
+				gl_FragColor = vec4(defaultColor*vLightIntensity, 1.0);
 	}
 	
 }
