@@ -28,7 +28,7 @@ void main() {
     // Animate the object along Y using a sine function
     float wiggle = amplitude * sin(2*PI*Timer + phaseShift);
     // Replace the original vertex Y with an offset version
-    vec4 animatedPos = vec4(gl_Vertex.x + speed * Timer, gl_Vertex.y, gl_Vertex.z + wiggle, 1.0);
+    vec4 animatedPos = vec4(gl_Vertex.x + wiggle * speed, gl_Vertex.y, gl_Vertex.z + wiggle, 1.0);
 
     // Compute final position
     gl_Position = gl_ModelViewProjectionMatrix * animatedPos;

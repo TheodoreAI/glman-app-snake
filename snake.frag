@@ -11,22 +11,27 @@ in float vLightIntensity;
 
 vec3 scaleColor = vec3(0.07, 0.01, 0.0);
 vec3 baseColor = vec3(0.8, 0.7, 0.5);
+vec3 defaultColor = vec3(0.92, 0.89, 0.06);
 void main( )
 {
 
-	//* create a repeating pattern by multiplying the UV scaleFactor*/
+	//* create a repeating pattern by multiplying the scaleFactor*/
 	vec2 scaledST = fract(vST * scaleFactor);
 
 	// center the coordinates
-	vec2 centeredUV = scaledST - 0.5;
+	vec2 centered = scaledST - 0.5;
 
-	float dist = length(centeredUV);
+	float dist = length(centered);
 
 	//* picking colors */
-	
-	if(dist < radius){
-		gl_FragColor = vec4(scaleColor*vLightIntensity, 1.0);
+	if(vST.s < 0.5){
+		if(dist < radius){
+			gl_FragColor = vec4(scaleColor*vLightIntensity, 1.0);
+		}else{
+			gl_FragColor = vec4(baseColor*vLightIntensity, 1.0);
+		}
 	}else{
-		gl_FragColor = vec4(baseColor*vLightIntensity, 1.0);
+		gl_FragColor = vec4(defaultColor*vLightIntensity, 1.0);
 	}
+	
 }
